@@ -1,13 +1,12 @@
+import sys
 from lexer import Lexer
 from parser import Parser
 from interpreter import Interpreter
 
 def main():
-    code = """
-    x = 10;
-    y = x + 5;
-    print(y);
-    """
+    with open(sys.argv[1]) as file:
+        code = file.read()
+
     lexer = Lexer(code)
     tokens = lexer.tokenize()
 
