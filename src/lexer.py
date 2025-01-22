@@ -8,6 +8,7 @@ TOKEN_SPECIFICATION = [
     ("MINUS", r"-"),              # Subtraktion
     ("MULT", r"\*"),              # Multiplikation
     ("DIV", r"/"),                # Division
+    ("MOD", r"\%"),               # Modulo
     ("LPAREN", r"\("),            # Linke Klammer
     ("RPAREN", r"\)"),            # Rechte Klammer
     ("SEMICOLON", r";"),          # Semikolon

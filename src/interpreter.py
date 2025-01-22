@@ -17,6 +17,8 @@ class Interpreter:
                 return left * right
             elif node.op == "/":
                 return left / right
+            elif node.op == "%":
+                return left % right
         elif isinstance(node, NumNode):  # Zahlen
             return node.value
         elif isinstance(node, VarNode):  # Variablen

@@ -60,7 +60,7 @@ class Parser:
 
     def expression(self):
         left = self.term()
-        while self.current_token_type() in ("PLUS", "MINUS"):
+        while self.current_token_type() in ("PLUS", "MINUS", "DIV", "MULT", "MOD"):
             op = self.current_token_value()
             self.pos += 1
             right = self.term()
