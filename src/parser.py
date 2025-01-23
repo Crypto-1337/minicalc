@@ -38,6 +38,14 @@ class WhileNode(ASTNode):
     def __init__(self, condition, body):
         self.condition = condition
         self.body = body
+
+class ForNode(ASTNode):
+    def __init__(self, initialization, condition, increment, body):
+        self.initialization = initialization  # Zuweisung (z. B. x = 0)
+        self.condition = condition            # Bedingung (z. B. x < 5)
+        self.increment = increment            # Inkrement (z. B. x = x + 1)
+        self.body = body                      # Block (z. B. { print(x); })
+
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -59,6 +67,8 @@ class Parser:
             return self.if_statement()
         elif token_type == "WHILE":
             return self.while_statement()
+        elif token_type == "FOR":
+            return self.for_statement()
         else:
             raise SyntaxError("Unerwartetes Token: " + token_value)
 
@@ -84,6 +94,26 @@ class Parser:
         body = self.block()  # Parse den Schleifen-Block { ... }
         return WhileNode(condition, body)
     
+
+    def for_statement(self):
+        self.pos += 1  # Überspringe 'for'
+        self.expect("LPAREN")  # Erwarte '('
+
+        # Parse die Initialisierung (z. B. x = 0)
+        initialization = self.assignment()
+
+        # Parse die Bedingung (z. B. x < 5)
+        condition = self.expression()
+        self.expect("SEMICOLON")  # Erwarte ';'
+
+        # Parse die Inkrementierung (z. B. x = x + 1)
+        increment = self.assignment()  # Verwende expression() statt assignment()
+        self.expect("RPAREN")  # Erwarte ')'
+
+        # Parse den Schleifenblock
+        body = self.block()
+
+        return ForNode(initialization, condition, increment, body)
     def if_statement(self):
         self.pos += 1  # Überspringe 'if'
         self.expect("LPAREN")  # Erwarte '('

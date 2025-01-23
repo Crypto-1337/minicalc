@@ -21,6 +21,7 @@ TOKEN_SPECIFICATION = [
     ("IF", r"if"),                # Keyword: if
     ("ELSE", r"else"),            # Keyword: else
     ("WHILE", r"while"),          # Keyword: while
+    ("FOR", r"for"),              # Keyword: for
     ("VAR", r"[a-zA-Z_][a-zA-Z_0-9]*"), # Variablennamen
     ("SKIP", r"[ \t]+"),          # Leerzeichen (ignorieren)
     ("MISMATCH", r"."),           # Unbekannte Zeichen
