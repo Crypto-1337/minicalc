@@ -24,6 +24,16 @@ class PrintNode(ASTNode):
     def __init__(self, expr):
         self.expr = expr
 
+class IfNode(ASTNode):
+    def __init__(self, condition, then_branch, else_branch=None):
+        self.condition = condition
+        self.then_branch = then_branch
+        self.else_branch = else_branch
+
+class BlockNode(ASTNode):
+    def __init__(self, statements):
+        self.statements = statements
+
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -41,6 +51,8 @@ class Parser:
             return self.assignment()
         elif token_type == "PRINT":
             return self.print_statement()
+        elif token_type == "IF":
+            return self.if_statement()
         else:
             raise SyntaxError("Unerwartetes Token: " + token_value)
 
@@ -58,9 +70,33 @@ class Parser:
         self.expect("SEMICOLON")
         return PrintNode(expr)
 
+    
+    def if_statement(self):
+        self.pos += 1  # Überspringe 'if'
+        self.expect("LPAREN")  # Erwarte '('
+        condition = self.expression()  # Bedingung parsen
+        self.expect("RPAREN")  # Erwarte ')'
+        then_branch = self.block()  # Parsen des 'then'-Blocks
+        else_branch = None
+        try:
+            if self.current_token_type() == "ELSE":
+                self.pos += 1  # Überspringe 'else'
+                else_branch = self.block()  # Parsen des 'else'-Blocks
+        except:
+            pass  
+        return IfNode(condition, then_branch, else_branch)
+
+    def block(self):
+        self.expect("LBRACE")  # Erwarte '{'
+        statements = []
+        while self.current_token_type() != "RBRACE":
+            statements.append(self.statement())  # Parsen von Anweisungen im Block
+        self.expect("RBRACE")  # Erwarte '}'
+        return BlockNode(statements)
+
     def expression(self):
         left = self.term()
-        while self.current_token_type() in ("PLUS", "MINUS", "DIV", "MULT", "MOD"):
+        while self.current_token_type() in ("PLUS", "MINUS", "DIV", "MULT", "MOD", "GT", "LT", "EQ"):
             op = self.current_token_value()
             self.pos += 1
             right = self.term()

@@ -9,10 +9,17 @@ TOKEN_SPECIFICATION = [
     ("MULT", r"\*"),              # Multiplikation
     ("DIV", r"/"),                # Division
     ("MOD", r"\%"),               # Modulo
+    ("LT", r"<"),                 # Kleiner als
+    ("GT", r">"),                 # Größer als
+    ("EQ", r"=="),                # Gleich wie
     ("LPAREN", r"\("),            # Linke Klammer
     ("RPAREN", r"\)"),            # Rechte Klammer
+    ("LBRACE", r"\{"),            #Linke geschwungene Klammer
+    ("RBRACE", r"\}"),            #Rechte geschwungene Klammer
     ("SEMICOLON", r";"),          # Semikolon
     ("PRINT", r"print"),          # Keyword: print
+    ("IF", r"if"),                #Keyword: if
+    ("ELSE", r"else"),            #Keyword: else
     ("VAR", r"[a-zA-Z_][a-zA-Z_0-9]*"), # Variablennamen
     ("SKIP", r"[ \t]+"),          # Leerzeichen (ignorieren)
     ("MISMATCH", r"."),           # Unbekannte Zeichen

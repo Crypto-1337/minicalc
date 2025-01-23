@@ -1,5 +1,5 @@
 # Importiere die AST-Klassen
-from parser import BinOpNode, NumNode, AssignNode, VarNode, PrintNode
+from parser import BinOpNode, NumNode, AssignNode, VarNode, PrintNode, IfNode, BlockNode
 
 class Interpreter:
     def __init__(self):
@@ -19,6 +19,12 @@ class Interpreter:
                 return left / right
             elif node.op == "%":
                 return left % right
+            elif node.op == "<":
+                return left < right
+            elif node.op == ">":
+                return left > right
+            elif node.op == "==":
+                return left == right
         elif isinstance(node, NumNode):  # Zahlen
             return node.value
         elif isinstance(node, VarNode):  # Variablen
@@ -30,5 +36,14 @@ class Interpreter:
         elif isinstance(node, PrintNode):  # Druckbefehl
             value = self.visit(node.expr)
             print(value)
+        elif isinstance(node, IfNode):  #Bedingung
+            condition_value = self.visit(node.condition)
+            if condition_value:
+                self.visit(node.then_branch)
+            elif node.else_branch:
+                self.visit(node.else_branch)
+        elif isinstance(node, BlockNode):
+            for statement in node.statements:
+                self.visit(statement)
         else:
             raise TypeError(f"Unbekannter Knotentyp: {type(node)}")
