@@ -10,7 +10,9 @@ TOKEN_SPECIFICATION = [
     ("DIV", r"/"),                # Division
     ("MOD", r"\%"),               # Modulo
     ("LT", r"<"),                 # Kleiner als
+    ("LTEQ", r"<="),              # Kleicher gleich
     ("GT", r">"),                 # Größer als
+    ("GTEQ", r">=")               # Größer gleich
     ("EQ", r"=="),                # Gleich wie
     ("LPAREN", r"\("),            # Linke Klammer
     ("RPAREN", r"\)"),            # Rechte Klammer

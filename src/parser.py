@@ -139,7 +139,7 @@ class Parser:
 
     def expression(self):
         left = self.term()
-        while self.current_token_type() in ("PLUS", "MINUS", "DIV", "MULT", "MOD", "GT", "LT", "EQ"):
+        while self.current_token_type() in ("PLUS", "MINUS", "DIV", "MULT", "MOD", "GT", "GTEQ", "LT", "LTEQ", "EQ"):
             op = self.current_token_value()
             self.pos += 1
             right = self.term()

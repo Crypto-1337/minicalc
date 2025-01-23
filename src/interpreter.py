@@ -21,8 +21,12 @@ class Interpreter:
                 return left % right
             elif node.op == "<":
                 return left < right
+            elif node.op == "<=":
+                return left <= right
             elif node.op == ">":
                 return left > right
+            elif node.op == ">=":
+                return left >= right
             elif node.op == "==":
                 return left == right
         elif isinstance(node, NumNode):  # Zahlen
