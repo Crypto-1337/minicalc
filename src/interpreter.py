@@ -1,5 +1,5 @@
 # Importiere die AST-Klassen
-from parser import BinOpNode, NumNode, AssignNode, VarNode, PrintNode, WhileNode, ForNode, IfNode, BlockNode
+from parser import *
 
 class Interpreter:
     def __init__(self):
@@ -30,6 +30,8 @@ class Interpreter:
             elif node.op == "==":
                 return left == right
         elif isinstance(node, NumNode):  # Zahlen
+            return node.value
+        elif isinstance(node, StringNode):
             return node.value
         elif isinstance(node, VarNode):  # Variablen
             if node.name not in self.variables:

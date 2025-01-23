@@ -11,6 +11,10 @@ class NumNode(ASTNode):
     def __init__(self, value):
         self.value = value
 
+class StringNode(ASTNode):
+    def __init__(self, value):
+        self.value = value
+
 class VarNode(ASTNode):
     def __init__(self, name):
         self.name = name
@@ -151,6 +155,9 @@ class Parser:
         if token_type == "NUMBER":
             self.pos += 1
             return NumNode(int(token_value))
+        elif token_type == "STRING":
+            self.pos +=1 
+            return StringNode(token_value)
         elif token_type == "VAR":
             self.pos += 1
             return VarNode(token_value)

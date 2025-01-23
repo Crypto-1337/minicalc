@@ -2,6 +2,7 @@ import re
 
 # Definition der verschiedenen Token-Typen
 TOKEN_SPECIFICATION = [
+    ("STRING", r'"[^"]*"'),  # String mit doppelten Anführungszeichen
     ("NUMBER", r"\d+"),           # Zahlen
     ("ASSIGN", r"="),             # Zuweisung
     ("PLUS", r"\+"),              # Addition
@@ -12,7 +13,7 @@ TOKEN_SPECIFICATION = [
     ("LT", r"<"),                 # Kleiner als
     ("LTEQ", r"<="),              # Kleicher gleich
     ("GT", r">"),                 # Größer als
-    ("GTEQ", r">=")               # Größer gleich
+    ("GTEQ", r">="),               # Größer gleich
     ("EQ", r"=="),                # Gleich wie
     ("LPAREN", r"\("),            # Linke Klammer
     ("RPAREN", r"\)"),            # Rechte Klammer
