@@ -34,6 +34,10 @@ class BlockNode(ASTNode):
     def __init__(self, statements):
         self.statements = statements
 
+class WhileNode(ASTNode):
+    def __init__(self, condition, body):
+        self.condition = condition
+        self.body = body
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -53,6 +57,8 @@ class Parser:
             return self.print_statement()
         elif token_type == "IF":
             return self.if_statement()
+        elif token_type == "WHILE":
+            return self.while_statement()
         else:
             raise SyntaxError("Unerwartetes Token: " + token_value)
 
@@ -70,6 +76,13 @@ class Parser:
         self.expect("SEMICOLON")
         return PrintNode(expr)
 
+    def while_statement(self):
+        self.pos += 1  # Überspringe 'while'
+        self.expect("LPAREN")  # Erwarte '('
+        condition = self.expression()  # Parse die Bedingung (z. B. x < 5)
+        self.expect("RPAREN")  # Erwarte ')'
+        body = self.block()  # Parse den Schleifen-Block { ... }
+        return WhileNode(condition, body)
     
     def if_statement(self):
         self.pos += 1  # Überspringe 'if'

@@ -1,5 +1,5 @@
 # Importiere die AST-Klassen
-from parser import BinOpNode, NumNode, AssignNode, VarNode, PrintNode, IfNode, BlockNode
+from parser import BinOpNode, NumNode, AssignNode, VarNode, PrintNode, WhileNode, IfNode, BlockNode
 
 class Interpreter:
     def __init__(self):
@@ -36,6 +36,9 @@ class Interpreter:
         elif isinstance(node, PrintNode):  # Druckbefehl
             value = self.visit(node.expr)
             print(value)
+        elif isinstance(node, WhileNode):
+            while self.visit(node.condition):
+                self.visit(node.body);
         elif isinstance(node, IfNode):  #Bedingung
             condition_value = self.visit(node.condition)
             if condition_value:

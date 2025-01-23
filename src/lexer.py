@@ -2,7 +2,7 @@ import re
 
 # Definition der verschiedenen Token-Typen
 TOKEN_SPECIFICATION = [
-    ("NUMBER", r"\d+"),            # Zahlen
+    ("NUMBER", r"\d+"),           # Zahlen
     ("ASSIGN", r"="),             # Zuweisung
     ("PLUS", r"\+"),              # Addition
     ("MINUS", r"-"),              # Subtraktion
@@ -14,12 +14,13 @@ TOKEN_SPECIFICATION = [
     ("EQ", r"=="),                # Gleich wie
     ("LPAREN", r"\("),            # Linke Klammer
     ("RPAREN", r"\)"),            # Rechte Klammer
-    ("LBRACE", r"\{"),            #Linke geschwungene Klammer
-    ("RBRACE", r"\}"),            #Rechte geschwungene Klammer
+    ("LBRACE", r"\{"),            # Linke geschwungene Klammer
+    ("RBRACE", r"\}"),            # Rechte geschwungene Klammer
     ("SEMICOLON", r";"),          # Semikolon
     ("PRINT", r"print"),          # Keyword: print
-    ("IF", r"if"),                #Keyword: if
-    ("ELSE", r"else"),            #Keyword: else
+    ("IF", r"if"),                # Keyword: if
+    ("ELSE", r"else"),            # Keyword: else
+    ("WHILE", r"while"),          # Keyword: while
     ("VAR", r"[a-zA-Z_][a-zA-Z_0-9]*"), # Variablennamen
     ("SKIP", r"[ \t]+"),          # Leerzeichen (ignorieren)
     ("MISMATCH", r"."),           # Unbekannte Zeichen
