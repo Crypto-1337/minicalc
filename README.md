@@ -34,9 +34,11 @@ Installation and Usage
 
 1.  git clone cd MiniCalc
     
-2.  python3 src/main.py examples/example1.mc
+2.  chmod +x ./src/minicalc
+
+3.  sudo cp ./src/minicalc /bin or add ./src/minicalc to PATH
     
-3.  x = 10;y = x + 5;if (y > 10) { print(y);}
+4. minicalc ./examples/example1.mc (or any minicalc file)
     
 
 How It Works
